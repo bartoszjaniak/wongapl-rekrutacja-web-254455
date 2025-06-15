@@ -1,9 +1,28 @@
 ---
 const today = new Date();
+let links: Record<string, any>[] = [];
+try {
+  links = (await Astro.glob('./../content/links/*.{json}'))?.sort(
+    (a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
+  ) ?? [];
+} catch (e) {
+  links = [];
+}
 ---
 
 <footer>
 	&copy; {today.getFullYear()} YOUR NAME HERE. All rights reserved.
+  {links.length > 0 && (
+    <ul>
+      {links.map((link) => (
+        <li>
+          <a href={link.frontmatter.url} target="_blank" rel="noopener noreferrer">
+            {link.frontmatter.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
 </footer>
 <style>
 	footer {

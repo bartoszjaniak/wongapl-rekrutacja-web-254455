@@ -1,4 +1,3 @@
-
 import { defineStaticConfig } from "tinacms";
 
 // Your hosting provider likely exposes this as an environment variable
@@ -23,7 +22,7 @@ export default defineStaticConfig({
       {
         name: "post",
         label: "Posts",
-        path: "src/content",
+        path: "src/content/posts",
         format: 'mdx',
         fields: [
           {
@@ -65,6 +64,32 @@ export default defineStaticConfig({
                 ],
               },
             ],
+          }
+        ],
+      },
+      {
+        name: "link",
+        label: "Links",
+        path: "src/content/links",
+        format: "json",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "url",
+            label: "URL",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Description",
           }
         ],
       },
