@@ -1,21 +1,21 @@
+// .tina/config.ts
 import { defineStaticConfig } from "tinacms";
-
-// Your hosting provider likely exposes this as an environment variable
-const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "main";
-
-export default defineStaticConfig({
+var branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "main";
+var config_default = defineStaticConfig({
   branch,
-  clientId: null,   // Get this from tina.io
-  token: null,      // Get this from tina.io
+  clientId: null,
+  // Get this from tina.io
+  token: null,
+  // Get this from tina.io
   build: {
     outputFolder: "admin",
-    publicFolder: "public",
+    publicFolder: "public"
   },
   media: {
     tina: {
       mediaRoot: "uploads",
-      publicFolder: "public",
-    },
+      publicFolder: "public"
+    }
   },
   schema: {
     collections: [
@@ -23,30 +23,34 @@ export default defineStaticConfig({
         name: "post",
         label: "Posts",
         path: "src/content/posts",
-        format: 'md',
+        format: "md",
         fields: [
           {
             type: "string",
             name: "title",
             label: "Title",
             isTitle: true,
-            required: true,
-          },{
+            required: true
+          },
+          {
             type: "string",
             name: "description",
-            label: "Description",
-          },{
+            label: "Description"
+          },
+          {
             type: "image",
             name: "heroImage",
-            label: "Hero Image",
-          },{
+            label: "Hero Image"
+          },
+          {
             type: "datetime",
             name: "pubDate",
             label: "Publish Date",
             ui: {
               dateFormat: "DD MMMM YYYY"
-            },
-          },{
+            }
+          },
+          {
             type: "rich-text",
             name: "body",
             label: "Body",
@@ -59,13 +63,13 @@ export default defineStaticConfig({
                   {
                     name: "variableExample",
                     label: "Variable Example",
-                    type: "string",
+                    type: "string"
                   }
-                ],
-              },
-            ],
+                ]
+              }
+            ]
           }
-        ],
+        ]
       },
       {
         name: "link",
@@ -78,20 +82,20 @@ export default defineStaticConfig({
             name: "title",
             label: "Title",
             isTitle: true,
-            required: true,
+            required: true
           },
           {
             type: "string",
             name: "url",
             label: "URL",
-            required: true,
+            required: true
           },
           {
             type: "string",
             name: "description",
-            label: "Description",
+            label: "Description"
           }
-        ],
+        ]
       },
       {
         name: "settings",
@@ -110,29 +114,32 @@ export default defineStaticConfig({
             ui: {
               component: "hidden"
             },
-            required: true,
+            required: true
           },
           {
             type: "string",
             name: "title",
             label: "Title",
             isTitle: true,
-            required: true,
+            required: true
           },
           {
             type: "rich-text",
             name: "body",
             label: "Body",
-            isBody: true,
+            isBody: true
           }
         ],
         ui: {
-            allowedActions: {
-                create: false,
-                delete: false,
-            },
+          allowedActions: {
+            create: false,
+            delete: false
+          }
         }
-      },
-    ],
-  },
+      }
+    ]
+  }
 });
+export {
+  config_default as default
+};

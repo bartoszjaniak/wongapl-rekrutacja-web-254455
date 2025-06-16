@@ -6,46 +6,45 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 ---
 
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header title={SITE_TITLE} />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to your <a href="https://astro.build/">Astro</a> blog starter template, modified
-				to support <a href="https://tina.io/">Tina CMS</a>. This template serves as a lightweight,
-				minimally-styled starting point for anyone looking to build a personal website or blog with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Spin up your CMS with <code>npm run tina</code> then head to <a href="/admin/index.html">/admin/index.html</a></li>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the Astro docs
-				</a> or <a href="https://astro.build/chat">join them on Discord</a> to ask questions.
-				For help with the CMS, check out <a href="https://tina.io/docs/">the Tina documentation</a>
-				or join their <a href="https://discord.com/invite/zumN63Ybpf">Discord server</a>.
-			</p>
-			<p>Have fun! I'm <a href="https://www.bennet.org/">Tom Bennet</a> - if you would like to suggest
-				improvements to this template, please consider <a href="https://github.com/tombennet/astro-tina-starter">
-			  submitting a PR</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+<html lang="pl">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="bg-gray-50 text-gray-900 font-sans">
+    <Header title={SITE_TITLE} />
+    <main class="max-w-2xl mx-auto py-12 px-4">
+      <header class="mb-10 text-center">
+        <h1 class="text-4xl font-bold mb-2">💻 Programowanie, 🤔 Filozofia, 🚀 Sci-Fi</h1>
+        <p class="text-lg text-gray-600">Witaj na przykładowej stronie łączącej trzy fascynujące światy!</p>
+      </header>
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-2">💻 Programowanie</h2>
+        <p>
+          Programowanie to sztuka rozwiązywania problemów i tworzenia nowych światów za pomocą kodu. Czy wiesz, że pierwszy programista w historii to Ada Lovelace, która już w XIX wieku napisała algorytm dla maszyny analitycznej Charlesa Babbage’a?
+        </p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-2">🤔 Filozofia</h2>
+        <p>
+          Filozofia inspiruje do zadawania pytań o naturę rzeczywistości, sens istnienia i granice poznania. Jednym z ciekawszych nurtów jest <strong>esencjalizm</strong> – pogląd, że każda rzecz ma swoją niezmienną istotę, która definiuje jej tożsamość. Czy kod ma swoją esencję, niezależnie od implementacji?
+        </p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-2">🚀 Science Fiction</h2>
+        <p>
+          Sci-fi to laboratorium wyobraźni, w którym testujemy granice nauki, etyki i ludzkich możliwości. Jeśli szukasz inspiracji, sięgnij po książkę <strong>„Człowiek z Wysokiego Zamku”</strong> Philipa K. Dicka. To nie tylko alternatywna wizja historii, ale też głęboka refleksja nad naturą rzeczywistości i wpływem wyobraźni na świat.
+        </p>
+        <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <h3 class="text-xl font-bold mb-1">🌌 Bestseller: „Hyperion” Dana Simmonsa</h3>
+          <p>
+            Jeśli miałbym polecić jedną powieść, która zachwyci zarówno miłośników wielkich idei, jak i epickiej przygody, to byłby to właśnie <strong>„Hyperion”</strong>. To nie jest zwykła space opera – to literacka podróż przez czas, religię, technologię i ludzkie emocje. Siedmioro pielgrzymów, każdy z własną tajemnicą, wyrusza na planetę Hyperion, gdzie czeka na nich mityczny i przerażający Shrike. Simmons łączy poetycki język, filozoficzne pytania i niesamowitą wyobraźnię, tworząc dzieło, które zostaje w głowie na długo po ostatniej stronie. Jeśli szukasz książki, która poszerzy Twoje horyzonty i nie pozwoli Ci zasnąć – to jest ten tytuł!
+          </p>
+        </div>
+      </section>
+      <footer class="mt-12 text-center text-gray-500">
+        <p>Stworzono z pasji do kodu, myślenia i marzeń o gwiazdach ✨</p>
+      </footer>
+    </main>
+    <Footer />
+  </body>
 </html>

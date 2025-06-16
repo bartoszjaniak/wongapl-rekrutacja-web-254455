@@ -20,7 +20,17 @@ const linksCollection = defineCollection({
   }),
 });
 
+const settingsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    type: z.string(), // e.g., 'footer'
+    body: z.string().optional(),
+  }),
+});
+
 export const collections = {
   posts: postsCollection,
   links: linksCollection,
+  settings: settingsCollection,
 };
