@@ -1,13 +1,9 @@
 ---
+
 const today = new Date();
-let links: Record<string, any>[] = [];
-try {
-  links = (await Astro.glob('./../content/links/*.{json}'))?.sort(
-    (a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
-  ) ?? [];
-} catch (e) {
-  links = [];
-}
+// Use Astro.glob() to fetch all links, and then sort them by date.
+const links = (await Astro.glob('./../content/links/*.json'));
+console.log(links);
 ---
 
 <footer>
@@ -16,8 +12,8 @@ try {
     <ul>
       {links.map((link) => (
         <li>
-          <a href={link.frontmatter.url} target="_blank" rel="noopener noreferrer">
-            {link.frontmatter.title}
+          <a href={link.url} title={link.description} target="_blank" rel="noopener noreferrer">
+            {link.title}
           </a>
         </li>
       ))}
