@@ -18,9 +18,14 @@ const links = (await Astro.glob('./../content/links/*.json'));
     </ul>
   )}
 </footer>
-<style>
+<style >
 	footer {
 		padding: 25px;
 		text-align: center;
 	}
+
+  footer ul {
+    list-style-type: none;
+  }
+
 </style>
