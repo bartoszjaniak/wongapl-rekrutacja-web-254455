@@ -1,7 +1,7 @@
 ---
 const today = new Date();
-
-const links = (await Astro.glob('./../content/links/*.json'));
+import { getCollection } from 'astro:content';
+const links = await getCollection('links');
 ---
 
 <footer>
@@ -10,8 +10,8 @@ const links = (await Astro.glob('./../content/links/*.json'));
     <ul>
       {links.map((link) => (
         <li>
-          <a href={link.url} title={link.description} target="_blank" rel="noopener noreferrer">
-            {link.title}
+          <a href={link.data.url} title={link.data.description} target="_blank" rel="noopener noreferrer">
+            {link.data.title}
           </a>
         </li>
       ))}

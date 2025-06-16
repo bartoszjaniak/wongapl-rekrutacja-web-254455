@@ -1,24 +1,25 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Pagination from '../components/Pagination.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Pagination from '../../components/Pagination.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, POSTS_PER_PAGE } from '../../config';
 import { getCollection } from 'astro:content';
 
-const POSTS_PER_PAGE = 3;
-const url = new URL(Astro.request.url);
-const pageParam = url.searchParams.get('page');
-const currentPage = pageParam ? parseInt(pageParam) : 1;
-
+const { page } = Astro.params;
+const currentPage = page ? parseInt(page) : 1;
 const posts = (await getCollection('posts')).sort(
   (a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
 );
 const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
 const paginatedPosts = posts.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE);
 
-if (currentPage === 1 && url.pathname === '/blog') {
-  Astro.redirect('/blog/1');
+export async function getStaticPaths() {
+  const posts = (await getCollection('posts')).sort(
+    (a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+  );
+  const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+  return Array.from({ length: totalPages }, (_, i) => ({ params: { page: String(i + 1) } }));
 }
 ---
 
@@ -58,7 +59,7 @@ if (currentPage === 1 && url.pathname === '/blog') {
 									day: 'numeric',
 								})}
 							</time>
-							<a href={post.slug}>{post.data.title}</a>
+							<a href={`/${post.slug}`}>{post.data.title}</a>
 						</li>
 					))}
 				</ul>

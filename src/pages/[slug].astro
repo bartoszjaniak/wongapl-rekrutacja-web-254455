@@ -1,28 +1,20 @@
 ---
 import BlogPost from '../layouts/BlogPost.astro';
-import Counter from '../components/Counter.astro';
-import { postSchema, type Post } from '../schemas/linkSchema';
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const postsRaw = await Astro.glob('./../content/posts/*.{md,mdx}');
-  const posts: Post[] = postsRaw.map((item) => postSchema.parse({
-    title: item.frontmatter.title,
-    description: item.frontmatter.description,
-    heroImage: item.frontmatter.heroImage,
-    pubDate: item.frontmatter.pubDate,
-    body: item.frontmatter.body,
-  }));
-  return postsRaw.map((post) => ({
-    params: {
-      slug: post.file.split('/').pop().replace(/\.md(x)?/, '')
-    },
-    props: { post },
+  const postEntries = await getCollection("posts");
+  return postEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
   }));
 }
 
-const { frontmatter, Content } = Astro.props.post
-
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const frontmatter = entry.data;
 ---
+
 <BlogPost {frontmatter}>
-  <Content components={{ Counter }} />
+  <Content />
 </BlogPost>
