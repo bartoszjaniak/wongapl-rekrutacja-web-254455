@@ -1,9 +1,7 @@
 ---
-
 const today = new Date();
-// Use Astro.glob() to fetch all links, and then sort them by date.
+
 const links = (await Astro.glob('./../content/links/*.json'));
-console.log(links);
 ---
 
 <footer>
